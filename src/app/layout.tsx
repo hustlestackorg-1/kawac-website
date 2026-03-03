@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
-import { Manrope, Caveat, Playfair_Display } from "next/font/google"; // Added Playfair for "Psychological" logo
+import { Inter, Manrope, Caveat, Playfair_Display, Cormorant_Garamond } from "next/font/google"; // Import fonts
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { ProgramsTicker } from "@/components/ui/programs-ticker";
-import { CinematicTicker } from "@/components/ui/cinematic-ticker";
 import { AuthProvider } from "@/components/auth/AuthProvider";
+import { KawacAI } from "@/components/ui/KawacAI";
+import { SmoothScroll } from "@/components/ui/smooth-scroll";
 
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" }); // Body font
 const manrope = Manrope({
   subsets: ["latin"],
   variable: "--font-manrope",
@@ -25,9 +27,17 @@ const playfair = Playfair_Display({
   display: "swap",
 });
 
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-cormorant",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "KAWAC | Building Locally Led Solutions",
-  description: "Marginalized women, seniors, and communities are excluded from systems. KAWAC builds locally led, SDG-aligned solutions that work.",
+  title: "KAWAC | Niagara Emergency Relief & Advocacy",
+  description: "A locally-led emergency relief and advocacy organization serving the Niagara Region, St. Catharines, and Welland. We provide poverty reduction, newcomer support, and seniors assistance for the African Caribbean Black (ACB) community and all vulnerable populations.",
+  keywords: "Niagara Emergency Relief, Food Bank St. Catharines, Newcomer Support Niagara, ACB Community Niagara, Poverty Reduction, Hospital Advocacy, Seniors Help Niagara",
 };
 
 export default function RootLayout({
@@ -38,16 +48,25 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${manrope.variable} ${caveat.variable} ${playfair.variable} antialiased min-h-screen flex flex-col font-manrope`}
+        className={`${inter.variable} ${manrope.variable} ${caveat.variable} ${playfair.variable} ${cormorant.variable} antialiased min-h-screen flex flex-col font-sans bg-[#F8F9FA]`}
       >
         <AuthProvider>
-          <Header />
-          <CinematicTicker />
-          <main className="flex-1">
-            {children}
-          </main>
-          <ProgramsTicker />
-          <Footer />
+          <div className="flex flex-col min-h-screen">
+            {/* KAWAC INTELLIGENCE LAYER */}
+            {/* KAWAC INTELLIGENCE LAYER */}
+            <KawacAI />
+
+            <div className="grain-overlay" />
+
+            <SmoothScroll>
+              <Header />
+              <main className="flex-1">
+                {children}
+              </main>
+              <ProgramsTicker />
+              <Footer />
+            </SmoothScroll>
+          </div>
         </AuthProvider>
       </body>
     </html>

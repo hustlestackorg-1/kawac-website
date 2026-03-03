@@ -21,6 +21,7 @@ export default function PartnersAdminPage() {
     }, []);
 
     const fetchInquiries = async () => {
+        if (!supabase) return;
         setIsLoading(true);
         const { data, error } = await supabase
             .from("partner_inquiries")
@@ -34,6 +35,7 @@ export default function PartnersAdminPage() {
     };
 
     const updateStatus = async (id: string, status: string) => {
+        if (!supabase) return;
         const { error } = await supabase
             .from("partner_inquiries")
             .update({ status })
@@ -48,7 +50,7 @@ export default function PartnersAdminPage() {
         <div className="space-y-8">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-3xl font-playfair font-bold text-[#0C3B4E]">Partner Inquiries</h1>
+                    <h1 className="text-3xl font-playfair font-bold text-[#4A1D6B]">Partner Inquiries</h1>
                     <p className="text-slate-500">Track institutional alignments and grant opportunities.</p>
                 </div>
                 <div className="flex gap-4">
@@ -86,7 +88,7 @@ export default function PartnersAdminPage() {
                             inquiries.map((inq) => (
                                 <TableRow key={inq.id}>
                                     <TableCell>
-                                        <div className="font-bold text-[#0C3B4E]">{inq.organization_name}</div>
+                                        <div className="font-bold text-[#4A1D6B]">{inq.organization_name}</div>
                                         <div className="text-xs text-slate-500">{inq.contact_name} ({inq.email})</div>
                                     </TableCell>
                                     <TableCell>

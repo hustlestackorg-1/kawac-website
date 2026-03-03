@@ -5,43 +5,67 @@ import { MessageCircle, User, ArrowRight, Share2 } from "lucide-react";
 
 export function NewsOne() {
     return (
-        <section className="py-24 bg-white">
-            <div className="container px-4 md:px-0 mx-auto">
-                <div className="text-center mb-16">
-                    <span className="text-secondary font-caveat text-3xl font-bold block mb-2">News & articles</span>
-                    <h2 className="text-4xl md:text-5xl font-extrabold text-primary font-manrope leading-tight">
-                        Directly from the <br /> latest news and articles
-                    </h2>
+        <section className="py-24 bg-[#fffcf5] border-t border-slate-200">
+            <div className="container mx-auto max-w-5xl px-6">
+                <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-12 border-b border-black pb-12 mb-12">
+                    <div className="max-w-xl">
+                        <span className="font-cormorant italic text-xl mb-4 block text-slate-800">The Intelligence Briefing</span>
+                        <h2 className="text-5xl md:text-6xl font-serif font-black text-black leading-none tracking-tight mb-6">
+                            Global Impact <br /> Weekly.
+                        </h2>
+                        <p className="font-serif text-lg text-slate-600 leading-relaxed">
+                            Critical updates from the field, policy analysis, and strategic sovereignty reports.
+                            Delivered to 12,000+ partners.
+                        </p>
+                    </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {[1, 2, 3].map((item) => (
-                        <div key={item} className="group bg-white rounded-xl shadow-lg border border-gray-100 overflow-hidden hover:shadow-2xl transition-all duration-300">
-                            <div className="relative h-60 overflow-hidden">
-                                <img src={`/assets/hero-health.jpg`} alt="News" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500" />
-                                <div className="absolute top-4 left-4 bg-[#FBAF3C] text-white px-4 py-1 rounded-full text-xs font-bold font-manrope">
-                                    23 May, 2024
-                                </div>
-                            </div>
-                            <div className="p-8">
-                                <ul className="flex gap-4 mb-4 text-xs font-bold text-[#6A7695] uppercase tracking-wide">
-                                    <li className="flex items-center gap-2"><User className="w-4 h-4 text-secondary" /> Admin</li>
-                                    <li className="flex items-center gap-2"><MessageCircle className="w-4 h-4 text-secondary" /> 2 Comments</li>
-                                </ul>
-                                <h3 className="text-xl font-extrabold text-primary mb-6 font-manrope leading-normal group-hover:text-secondary transition-colors">
-                                    <Link href="/news/post">How does the malnutrition affect children?</Link>
-                                </h3>
-                                <div className="flex items-center justify-between border-t border-gray-100 pt-6">
-                                    <Link href="/news/post" className="flex items-center gap-2 text-[#6A7695] hover:text-secondary font-bold text-sm uppercase transition-colors">
-                                        Read More <ArrowRight className="w-4 h-4" />
-                                    </Link>
-                                    <button className="text-[#6A7695] hover:text-secondary transition-colors">
-                                        <Share2 className="w-4 h-4" />
+                <div className="grid md:grid-cols-12 gap-12 items-start">
+                    <div className="md:col-span-8">
+                        <form className="flex flex-col gap-0 border border-black">
+                            <div className="grid md:grid-cols-2">
+                                <input
+                                    type="email"
+                                    placeholder="Institutional Email Address"
+                                    className="p-6 bg-transparent font-serif text-lg border-b md:border-b-0 md:border-r border-black outline-none placeholder:text-slate-400 text-black"
+                                />
+                                <div className="flex">
+                                    <input
+                                        type="text"
+                                        placeholder="Organization"
+                                        className="p-6 bg-transparent font-serif text-lg border-r-0 md:border-r border-black outline-none w-full placeholder:text-slate-400 text-black"
+                                    />
+                                    <button className="bg-black text-white px-10 font-sans font-bold text-xs uppercase tracking-widest hover:bg-secondary transition-colors whitespace-nowrap hidden md:block">
+                                        Subscribe
                                     </button>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                            <button className="bg-black text-white py-6 font-sans font-bold text-xs uppercase tracking-widest hover:bg-secondary transition-colors md:hidden w-full">
+                                Subscribe
+                            </button>
+                        </form>
+                        <p className="mt-4 text-[10px] font-sans text-slate-500 uppercase tracking-widest">
+                            Secure, Encrypted, & Spam-Free. Read our <Link href="/privacy" className="underline hover:text-secondary">Privacy Protocol</Link>.
+                        </p>
+                    </div>
+
+                    <div className="md:col-span-4 border-l border-slate-200 pl-8 hidden md:block">
+                        <h4 className="font-sans font-black text-xs uppercase tracking-widest mb-6">Latest Dispatches</h4>
+                        <ul className="space-y-6">
+                            {[
+                                "The Architecture of Sovereignty",
+                                "Medical Camp Outcomes: Rift Valley",
+                                "Policy Watch: Bill C-19 Updates"
+                            ].map((item, i) => (
+                                <li key={i} className="group cursor-pointer">
+                                    <ArrowRight className="inline w-3 h-3 mr-2 text-secondary -ml-5 opacity-0 group-hover:opacity-100 transition-all" />
+                                    <span className="font-serif text-lg leading-tight group-hover:underline decoration-secondary underline-offset-4 transition-all">
+                                        {item}
+                                    </span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>

@@ -3,22 +3,21 @@
 import { motion } from "framer-motion";
 
 const programsList = [
-    "Maternal & Child Health",
-    "HIV and AIDS Support",
+    "Inclusive Development",
+    "Maternal ChildCare",
+    "Community Care & Support",
+    "HIV/AIDS Support",
     "Human Rights & Advocacy",
-    "Youth & Culture",
     "Climate Justice",
-    "Community Empowerment",
-    "Policy Reform",
-    "KAWAC"
+    "Opportunities Beyond Borders",
+    "Youth For Youth"
 ];
 
 export function ProgramsTicker() {
     return (
-        <div className="w-full bg-[#C41E3A] overflow-hidden py-6 relative">
-            {/* Gradient Masks */}
-            <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-[#C41E3A] to-transparent z-10"></div>
-            <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-[#C41E3A] to-transparent z-10"></div>
+        <div className="w-full bg-[#7c3aed] overflow-hidden py-6 relative border-t border-white/10">
+            {/* Amethyst Shine */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent pointer-events-none" />
 
             <div className="flex">
                 <motion.div
@@ -27,16 +26,15 @@ export function ProgramsTicker() {
                     transition={{
                         repeat: Infinity,
                         ease: "linear",
-                        duration: 25
+                        duration: 45 // Slower pace
                     }}
                 >
-                    {/* Double the list for seamless loop */}
-                    {[...programsList, ...programsList, ...programsList, ...programsList].map((program, i) => (
-                        <div key={i} className="inline-flex items-center mx-8">
-                            <span className="text-white text-2xl md:text-3xl font-bold font-playfair tracking-wide">
+                    {[...programsList, ...programsList].map((program, i) => (
+                        <div key={i} className="inline-flex items-center mx-12">
+                            <span className="text-white text-xl md:text-2xl font-bold font-cormorant tracking-widest uppercase">
                                 {program}
                             </span>
-                            <span className="mx-8 text-white/50 text-4xl">•</span>
+                            <span className="mx-12 text-white/30 text-3xl font-light">|</span>
                         </div>
                     ))}
                 </motion.div>

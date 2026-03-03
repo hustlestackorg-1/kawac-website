@@ -21,6 +21,7 @@ export default function ContactsAdminPage() {
     }, []);
 
     const fetchSubmissions = async () => {
+        if (!supabase) return;
         setIsLoading(true);
         const { data, error } = await supabase
             .from("contact_submissions")
@@ -34,6 +35,7 @@ export default function ContactsAdminPage() {
     };
 
     const toggleRead = async (id: string, isRead: boolean) => {
+        if (!supabase) return;
         const { error } = await supabase
             .from("contact_submissions")
             .update({ is_read: isRead })
@@ -48,7 +50,7 @@ export default function ContactsAdminPage() {
         <div className="space-y-8">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-3xl font-playfair font-bold text-[#0C3B4E]">Contact Submissions</h1>
+                    <h1 className="text-3xl font-playfair font-bold text-[#4A1D6B]">Contact Submissions</h1>
                     <p className="text-slate-500">Manage general inquiries and site communications.</p>
                 </div>
             </div>
@@ -81,10 +83,10 @@ export default function ContactsAdminPage() {
                             submissions.map((sub) => (
                                 <TableRow key={sub.id} className={sub.is_read ? 'opacity-80' : 'bg-blue-50/20'}>
                                     <TableCell>
-                                        <div className="font-bold text-[#0C3B4E]">{sub.name}</div>
+                                        <div className="font-bold text-[#4A1D6B]">{sub.name}</div>
                                         <div className="text-xs text-slate-500">{sub.email}</div>
                                     </TableCell>
-                                    <TableCell className="text-sm font-medium text-[#0C3B4E]">
+                                    <TableCell className="text-sm font-medium text-[#4A1D6B]">
                                         {sub.subject}
                                     </TableCell>
                                     <TableCell>

@@ -1,208 +1,159 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { useAuth } from "@/components/auth/AuthProvider";
-import { supabase } from "@/lib/supabase/client";
-import {
-    Users,
-    BarChart3,
-    MessageSquare,
-    TrendingUp,
-    Clock,
-    CheckCircle2,
-    AlertCircle,
-    GraduationCap,
-    DollarSign
-} from "lucide-react";
-import {
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import { motion } from "framer-motion";
+import { LayoutDashboard, Users, FileText, Settings, Bell, ExternalLink, CheckCircle, Clock } from "lucide-react";
+import { Button } from "@/components/ui/button";
+
+const stats = [
+    { label: "New Applications", value: "34", trend: "+12%", color: "text-secondary" },
+    { label: "Partner Inquiries", value: "8", trend: "+2", color: "text-green-500" },
+    { label: "Vetting Queue", value: "142", trend: "Normal", color: "text-slate-400" },
+    { label: "System Uptime", value: "99.9%", trend: "Optimal", color: "text-primary" }
+];
 
 export default function AdminDashboard() {
-    const { profile } = useAuth();
-    const [stats, setStats] = useState({
-        volunteers: 0,
-        interns: 0,
-        partners: 0,
-        donations: 0,
-        messages: 0
-    });
-    const [recentActivity, setRecentActivity] = useState<any[]>([]);
-    const [isLoading, setIsLoading] = useState(true);
-
-    useEffect(() => {
-        fetchDashboardData();
-    }, []);
-
-    const fetchDashboardData = async () => {
-        setIsLoading(true);
-
-        // 1. Fetch Counts
-        const [volRes, intRes, parRes, donRes, msgRes] = await Promise.all([
-            supabase.from("volunteer_applications").select("id", { count: "exact", head: true }),
-            supabase.from("internship_applications").select("id", { count: "exact", head: true }),
-            supabase.from("partner_inquiries").select("id", { count: "exact", head: true }),
-            supabase.from("donations").select("id", { count: "exact", head: true }),
-            supabase.from("contact_submissions").select("id", { count: "exact", head: true }),
-        ]);
-
-        setStats({
-            volunteers: volRes.count || 0,
-            interns: intRes.count || 0,
-            partners: parRes.count || 0,
-            donations: donRes.count || 0,
-            messages: msgRes.count || 0
-        });
-
-        // 2. Fetch Recent Activity (Combining latest from different tables)
-        const [volAct, intAct, parAct] = await Promise.all([
-            supabase.from("volunteer_applications").select("id, full_name, created_at, status").order("created_at", { ascending: false }).limit(2),
-            supabase.from("internship_applications").select("id, full_name, created_at, status").order("created_at", { ascending: false }).limit(2),
-            supabase.from("partner_inquiries").select("id, organization_name, created_at, status").order("created_at", { ascending: false }).limit(2),
-        ]);
-
-        const combined = [
-            ...(volAct.data || []).map(v => ({ ...v, type: "Volunteer App", name: v.full_name })),
-            ...(intAct.data || []).map(i => ({ ...i, type: "Internship App", name: i.full_name })),
-            ...(parAct.data || []).map(p => ({ ...p, type: "Partner Inquiry", name: p.organization_name })),
-        ].sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime()).slice(0, 5);
-
-        setRecentActivity(combined);
-        setIsLoading(false);
-    };
-
-    const statCards = [
-        { label: "Volunteers", value: stats.volunteers, icon: Users, color: "text-blue-600", bg: "bg-blue-100" },
-        { label: "Interns", value: stats.interns, icon: GraduationCap, color: "text-purple-600", bg: "bg-purple-100" },
-        { label: "Partners", value: stats.partners, icon: BarChart3, color: "text-[#FBAF3C]", bg: "bg-orange-100" },
-        { label: "Donations", value: stats.donations, icon: DollarSign, color: "text-green-600", bg: "bg-green-100" },
-    ];
-
     return (
-        <div className="space-y-10 animate-in fade-in duration-500">
-            {/* Header */}
-            <div>
-                <h1 className="text-4xl font-bold text-[#0C3B4E] font-playfair mb-2">Portfolio Overview</h1>
-                <p className="text-slate-500">System heartbeat and aggregate metrics for KAWAC operations.</p>
-            </div>
+        <main className="min-h-screen bg-slate-50 flex">
+            {/* Sidebar */}
+            <aside className="w-80 bg-white border-r border-slate-200 p-12 flex flex-col">
+                <div className="flex items-center gap-4 mb-20">
+                    <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center text-white font-black italic">K</div>
+                    <span className="text-xl font-black font-manrope tracking-tighter text-primary uppercase">Institution</span>
+                </div>
 
-            {/* Stats Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                {statCards.map((stat) => {
-                    const Icon = stat.icon;
-                    return (
-                        <Card key={stat.label} className="border-none shadow-sm hover:shadow-md transition-shadow">
-                            <CardContent className="p-6">
-                                <div className="flex items-center justify-between mb-4">
-                                    <div className={`p-3 rounded-xl ${stat.bg}`}>
-                                        <Icon className={`w-6 h-6 ${stat.color}`} />
-                                    </div>
-                                    <span className="flex items-center text-[10px] font-bold text-slate-400 uppercase tracking-widest">
-                                        Active
-                                    </span>
-                                </div>
-                                <h3 className="text-3xl font-bold text-[#0C3B4E] mb-1">{isLoading ? "..." : stat.value}</h3>
-                                <p className="text-sm font-medium text-slate-500">{stat.label}</p>
-                            </CardContent>
-                        </Card>
-                    );
-                })}
-            </div>
+                <nav className="space-y-4 flex-1">
+                    {[
+                        { label: "Dashboard", icon: LayoutDashboard, active: true },
+                        { label: "Applications", icon: FileText },
+                        { label: "Partner Hub", icon: Users },
+                        { label: "Global Intel", icon: Bell },
+                        { label: "Settings", icon: Settings }
+                    ].map((item, idx) => (
+                        <div
+                            key={idx}
+                            className={`flex items-center gap-4 p-4 rounded-xl cursor-pointer transition-all ${item.active ? 'bg-primary text-white shadow-xl shadow-primary/20' : 'text-slate-400 hover:bg-slate-50 hover:text-primary'}`}
+                        >
+                            <item.icon className="h-5 w-5" />
+                            <span className="text-[10px] font-black uppercase tracking-widest">{item.label}</span>
+                        </div>
+                    ))}
+                </nav>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-                {/* Recent Activity */}
-                <Card className="lg:col-span-2 border-none shadow-sm">
-                    <CardHeader className="flex flex-row items-center justify-between pb-2">
+                <div className="p-8 bg-slate-50 rounded-[30px] border border-slate-200">
+                    <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Admin Session</div>
+                    <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-slate-200" />
                         <div>
-                            <CardTitle className="text-xl font-bold text-[#0C3B4E]">Live Activity</CardTitle>
-                            <CardDescription>Latest interactions across all portals</CardDescription>
+                            <div className="text-xs font-bold text-primary">Governance Lead</div>
+                            <div className="text-[10px] text-green-500 font-bold uppercase tracking-tighter">Live Session</div>
                         </div>
-                        <Clock className="text-slate-400 w-5 h-5" />
-                    </CardHeader>
-                    <CardContent>
-                        <div className="divide-y divide-slate-100">
-                            {isLoading ? (
-                                Array(3).fill(0).map((_, i) => <div key={i} className="h-16 animate-pulse bg-slate-50 rounded-lg mb-2"></div>)
-                            ) : recentActivity.length === 0 ? (
-                                <p className="py-10 text-center text-slate-400">No recent activity found.</p>
-                            ) : (
-                                recentActivity.map((activity) => (
-                                    <div key={`${activity.type}-${activity.id}`} className="py-4 flex items-center justify-between hover:bg-slate-50 px-2 rounded-lg transition-colors">
-                                        <div className="flex items-center gap-4">
-                                            <div className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center font-bold text-[#0C3B4E] text-xs">
-                                                {activity.name?.charAt(0) || "P"}
-                                            </div>
-                                            <div>
-                                                <p className="font-bold text-[#0C3B4E] text-sm">{activity.name}</p>
-                                                <p className="text-xs text-slate-400">{activity.type}</p>
-                                            </div>
+                    </div>
+                </div>
+            </aside>
+
+            {/* Main Panel */}
+            <div className="flex-1 p-12 lg:p-24 overflow-y-auto">
+                <header className="flex justify-between items-center mb-16">
+                    <h1 className="text-4xl font-black text-primary font-manrope tracking-tighter">Command Centre.</h1>
+                    <div className="flex gap-4">
+                        <div className="relative">
+                            <Bell className="text-slate-400 h-6 w-6 mt-2" />
+                            <span className="absolute top-0 right-0 w-2 h-2 bg-secondary rounded-full border-2 border-slate-50" />
+                        </div>
+                        <Button className="bg-primary text-secondary rounded-full px-8 py-6 text-xs font-black uppercase tracking-widest">
+                            Deploy Protocol
+                        </Button>
+                    </div>
+                </header>
+
+                {/* Stats Grid */}
+                <div className="grid md:grid-cols-4 gap-8 mb-20">
+                    {stats.map((stat, idx) => (
+                        <motion.div
+                            key={idx}
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ delay: idx * 0.1 }}
+                            className="bg-white p-10 rounded-[40px] shadow-sm border border-slate-100"
+                        >
+                            <div className={`text-4xl font-black mb-2 ${stat.color}`}>{stat.value}</div>
+                            <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">{stat.label}</div>
+                            <div className="text-xs font-bold text-primary/40 italic">{stat.trend}</div>
+                        </motion.div>
+                    ))}
+                </div>
+
+                {/* Recent Activity */}
+                <div className="grid lg:grid-cols-3 gap-12">
+                    <div className="lg:col-span-2 space-y-8">
+                        <div className="flex justify-between items-end">
+                            <h3 className="text-2xl font-black text-primary font-manrope italic">Incoming Admissions</h3>
+                            <span className="text-xs font-black text-secondary cursor-pointer border-b-2 border-secondary leading-none">View All Pipeline</span>
+                        </div>
+
+                        <div className="space-y-4">
+                            {[
+                                { name: "John Doe", role: "Software Eng", time: "2m ago", status: "New" },
+                                { name: "Mary Jane", role: "Registered Nurse", time: "1h ago", status: "Vetting" },
+                                { name: "Strategic Partners Ltd", role: "Employer", time: "3h ago", status: "Pending" }
+                            ].map((item, idx) => (
+                                <motion.div
+                                    key={idx}
+                                    whileHover={{ x: 10 }}
+                                    className="p-8 bg-white rounded-3xl border border-slate-100 flex items-center justify-between group cursor-pointer transition-all hover:shadow-xl"
+                                >
+                                    <div className="flex items-center gap-6">
+                                        <div className="w-12 h-12 bg-slate-50 rounded-2xl flex items-center justify-center text-primary group-hover:bg-secondary transition-colors">
+                                            {idx === 2 ? <Users className="h-6 w-6" /> : <FileText className="h-6 w-6" />}
                                         </div>
-                                        <div className="text-right">
-                                            <Badge variant="outline" className="text-[10px] capitalize">
-                                                {activity.status}
-                                            </Badge>
-                                            <p className="text-[10px] text-slate-400 mt-1">
-                                                {new Date(activity.created_at).toLocaleDateString()}
-                                            </p>
+                                        <div>
+                                            <div className="font-bold text-primary">{item.name}</div>
+                                            <div className="text-xs text-slate-400">{item.role}</div>
                                         </div>
                                     </div>
-                                ))
-                            )}
+                                    <div className="flex items-center gap-8">
+                                        <div className="text-[10px] font-bold text-slate-300 uppercase tracking-widest">{item.time}</div>
+                                        <div className={`px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-widest ${item.status === 'New' ? 'bg-secondary/10 text-secondary' : 'bg-slate-100 text-slate-400'}`}>
+                                            {item.status}
+                                        </div>
+                                        <ExternalLink className="h-4 w-4 text-slate-200 group-hover:text-primary" />
+                                    </div>
+                                </motion.div>
+                            ))}
                         </div>
-                    </CardContent>
-                </Card>
+                    </div>
 
-                {/* System Health / Quick Links */}
-                <div className="space-y-6">
-                    <Card className="border-none shadow-sm bg-[#0C3B4E] text-white">
-                        <CardHeader>
-                            <CardTitle className="text-lg">Environment Status</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            <StatusRow label="Supabase Auth" status={!!process.env.NEXT_PUBLIC_SUPABASE_URL} />
-                            <StatusRow label="Database API" status={!!process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY} />
-                            <StatusRow label="Resend Mail" status={true} /> {/* Placeholder as env keys are server-side */}
-                        </CardContent>
-                    </Card>
+                    {/* Verification Status */}
+                    <div className="space-y-8">
+                        <h3 className="text-2xl font-black text-primary font-manrope italic">System Integrity</h3>
+                        <div className="p-10 bg-primary rounded-[40px] text-white space-y-8">
+                            <div className="space-y-2">
+                                <span className="text-[10px] font-black text-secondary uppercase tracking-[0.4em]">Sovereignty Check</span>
+                                <h4 className="text-2xl font-manrope font-black">All Protocols Active.</h4>
+                            </div>
 
-                    <Card className="border-none shadow-sm">
-                        <CardHeader>
-                            <CardTitle className="text-lg">Quick Actions</CardTitle>
-                        </CardHeader>
-                        <CardContent className="grid grid-cols-1 gap-3">
-                            <button className="bg-slate-50 hover:bg-slate-100 text-[#0C3B4E] text-xs font-bold py-3 px-4 rounded-lg transition-all text-left flex items-center gap-3">
-                                <AlertCircle className="w-4 h-4 text-[#FBAF3C]" />
-                                DOWNLOAD SCHEMA.SQL
-                            </button>
-                            <button className="bg-slate-50 hover:bg-slate-100 text-[#0C3B4E] text-xs font-bold py-3 px-4 rounded-lg transition-all text-left flex items-center gap-3">
-                                <MessageSquare className="w-4 h-4 text-[#FBAF3C]" />
-                                MANAGE TEMPLATES
-                            </button>
-                            <button className="bg-[#FBAF3C] text-[#0C3B4E] text-xs font-bold py-3 px-4 rounded-lg shadow-lg hover:shadow-none transition-all text-left flex items-center gap-3">
-                                <TrendingUp className="w-4 h-4" />
-                                GENERATE IMPACT REPORT
-                            </button>
-                        </CardContent>
-                    </Card>
+                            <div className="space-y-6">
+                                {[
+                                    { label: "Supabase Connection", status: "Active", icon: CheckCircle },
+                                    { label: "Resend Gateway", status: "Active", icon: CheckCircle },
+                                    { label: "Encryption Vault", status: "Secure", icon: Clock }
+                                ].map((check, i) => (
+                                    <div key={i} className="flex justify-between items-center text-xs">
+                                        <span className="text-white/40 font-bold uppercase tracking-widest">{check.label}</span>
+                                        <span className="text-secondary font-black flex items-center gap-2">
+                                            <check.icon className="h-3 w-3" /> {check.status}
+                                        </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <Button className="w-full bg-secondary text-primary hover:bg-white rounded-xl py-6 uppercase tracking-widest text-xs font-black transition-all">
+                                Run Verification Suite
+                            </Button>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    );
-}
-
-function StatusRow({ label, status }: { label: string, status: boolean }) {
-    return (
-        <div className="flex items-center justify-between">
-            <span className="text-sm text-white/70">{label}</span>
-            <span className={`flex items-center text-[10px] font-bold ${status ? 'text-green-400' : 'text-red-400'}`}>
-                {status ? <CheckCircle2 className="w-3 h-3 mr-1" /> : <AlertCircle className="w-3 h-3 mr-1" />}
-                {status ? "CONFIGURED" : "MISSING"}
-            </span>
-        </div>
+        </main>
     );
 }

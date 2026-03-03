@@ -1,26 +1,28 @@
 "use client";
 
 import { Hero } from "@/components/layout/Hero";
-import { FeatureTop } from "@/components/sections/FeatureTop";
-import { AboutOne } from "@/components/sections/AboutOne";
-import { CausesOne } from "@/components/sections/CausesOne";
+import { StrategicImpact } from "@/components/sections/StrategicImpact";
+import { TheCorridor } from "@/components/sections/TheCorridor";
 import { FeatureOne } from "@/components/sections/FeatureOne"; // Split Banner
-import { VolunteerCTA } from "@/components/sections/VolunteerCTA";
 import { CounterOne } from "@/components/sections/CounterOne";
-import { EventsOne } from "@/components/sections/EventsOne";
 import { NewsOne } from "@/components/sections/NewsOne";
+import { CinematicGallery } from "@/components/sections/CinematicGallery";
+import { LiveImpact } from "@/components/sections/LiveImpact";
+import { DirectorsInsight } from "@/components/sections/DirectorsInsight";
+import { GlobalBridgeMap } from "@/components/sections/GlobalBridgeMap";
 
 export default function Home() {
   return (
     <main className="flex flex-col min-h-screen">
       <Hero />
-      <FeatureTop />
-      <AboutOne />
-      <CausesOne />
+      <LiveImpact />
+      <StrategicImpact />
+      <DirectorsInsight />
+      <GlobalBridgeMap />
+      <TheCorridor />
+      <CinematicGallery />
       <FeatureOne />
-      <VolunteerCTA />
       <CounterOne />
-      <EventsOne />
       <NewsOne />
     </main>
   );

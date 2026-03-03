@@ -21,6 +21,7 @@ export default function VolunteersAdminPage() {
     }, []);
 
     const fetchApplications = async () => {
+        if (!supabase) return;
         setIsLoading(true);
         const { data, error } = await supabase
             .from("volunteer_applications")
@@ -34,6 +35,7 @@ export default function VolunteersAdminPage() {
     };
 
     const updateStatus = async (id: string, status: string) => {
+        if (!supabase) return;
         const { error } = await supabase
             .from("volunteer_applications")
             .update({ status })
@@ -58,14 +60,14 @@ export default function VolunteersAdminPage() {
         <div className="space-y-8">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-3xl font-playfair font-bold text-[#0C3B4E]">Volunteer Applications</h1>
+                    <h1 className="text-3xl font-playfair font-bold text-[#4A1D6B]">Volunteer Applications</h1>
                     <p className="text-slate-500">Manage and review all incoming volunteer submissions.</p>
                 </div>
                 <div className="flex gap-4">
                     <Button variant="outline" className="flex gap-2">
                         <Download size={16} /> Export CSV
                     </Button>
-                    <Button className="bg-[#0C3B4E] text-white">
+                    <Button className="bg-[#4A1D6B] text-white">
                         <Filter size={16} className="mr-2" /> Filter
                     </Button>
                 </div>
@@ -100,7 +102,7 @@ export default function VolunteersAdminPage() {
                             applications.map((app) => (
                                 <TableRow key={app.id}>
                                     <TableCell>
-                                        <div className="font-bold text-[#0C3B4E]">{app.full_name}</div>
+                                        <div className="font-bold text-[#4A1D6B]">{app.full_name}</div>
                                         <div className="text-xs text-slate-500 flex gap-2 mt-1">
                                             <Mail size={12} /> {app.email}
                                         </div>

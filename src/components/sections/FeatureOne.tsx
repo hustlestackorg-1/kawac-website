@@ -6,72 +6,49 @@ import { Button } from "@/components/ui/button";
 
 export function FeatureOne() {
     return (
-        <section className="py-24 bg-white px-4 md:px-0">
-            <div className="container mx-auto">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <section className="py-32 bg-white px-6">
+            <div className="container mx-auto max-w-7xl">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
 
-                    {/* Volunteer Box */}
-                    <div className="bg-[#F4F5F8] p-10 md:p-14 rounded-xl relative overflow-hidden group hover:shadow-xl transition-all">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/50 rounded-bl-[200px] -mr-16 -mt-16 pointer-events-none"></div>
+                    {/* Volunteer Box - Amethyst Stewardship */}
+                    <div className="bg-[#100a26] p-16 md:p-24 rounded-sm relative overflow-hidden group border border-white/5 shadow-institutional-shadow">
+                        <div className="absolute inset-0 opacity-[0.03] bg-[url('https://www.transparenttextures.com/patterns/natural-paper.png')] pointer-events-none" />
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-secondary/10 rounded-full -mr-20 -mt-20 pointer-events-none blur-3xl"></div>
 
-                        <div className="flex items-start gap-6 mb-6">
-                            <div className="bg-primary text-white w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
-                                <HelpCircle className="w-8 h-8" />
-                            </div>
-                            <h3 className="text-3xl font-extrabold text-primary font-manrope">
-                                Join Our <br /> Network
+                        <div className="flex flex-col items-start space-y-8 relative z-10">
+                            <div className="text-secondary font-black tracking-[0.4em] text-[10px] uppercase">/// SERVICE PROTOCOL</div>
+                            <h3 className="text-4xl md:text-6xl font-bold text-white font-cormorant leading-tight group-hover:text-secondary transition-colors duration-500">
+                                Join Our <br /> <span className="italic">Agency.</span>
                             </h3>
+                            <p className="text-white/50 text-lg font-inter leading-relaxed max-w-sm">
+                                Leverage your expertise in advocacy, healthcare, or logistics to architect systemic equity in ACB communities.
+                            </p>
+                            <Link href="/volunteer">
+                                <Button className="bg-secondary hover:bg-white text-primary font-black px-12 py-8 rounded-none text-xs tracking-[0.3em] uppercase transition-all duration-700">
+                                    APPLY TO SERVE
+                                </Button>
+                            </Link>
                         </div>
-                        <p className="text-[#6A7695] mb-8 text-lg">
-                            Leverage your skills in advocacy, healthcare, or logistics to drive systemic equity in ACB communities.
-                        </p>
-                        <ul className="space-y-3 mb-8">
-                            <li className="flex items-center gap-3 text-[#6A7695]">
-                                <span className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center"><Check className="w-3 h-3 text-white" /></span>
-                                Access professional training.
-                            </li>
-                            <li className="flex items-center gap-3 text-[#6A7695]">
-                                <span className="w-6 h-6 rounded-full bg-secondary flex items-center justify-center"><Check className="w-3 h-3 text-white" /></span>
-                                Connect with global changemakers.
-                            </li>
-                        </ul>
-                        <Link href="/volunteer">
-                            <Button className="bg-white text-primary border border-gray-200 hover:bg-primary hover:text-white rounded-full px-8 py-6 font-bold">
-                                APPLY NOW
-                            </Button>
-                        </Link>
                     </div>
 
-                    {/* Donation Box */}
-                    <div className="bg-[#FBAF3C] p-10 md:p-14 rounded-xl relative overflow-hidden group hover:shadow-xl transition-all">
-                        <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-bl-[200px] -mr-16 -mt-16 pointer-events-none"></div>
+                    {/* Donation Box - Gold Capital */}
+                    <div className="bg-[#F4F5F8] p-16 md:p-24 rounded-sm relative overflow-hidden group border border-slate-100 shadow-institutional-shadow">
+                        <div className="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full -mr-20 -mt-20 pointer-events-none blur-3xl"></div>
 
-                        <div className="flex items-start gap-6 mb-6">
-                            <div className="bg-white text-secondary w-16 h-16 rounded-full flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-110 transition-transform">
-                                <Gift className="w-8 h-8" />
-                            </div>
-                            <h3 className="text-3xl font-extrabold text-white font-manrope">
-                                Invest in <br /> Futures
+                        <div className="flex flex-col items-start space-y-8 relative z-10">
+                            <div className="text-primary font-black tracking-[0.4em] text-[10px] uppercase">/// CAPITAL ALLOCATION</div>
+                            <h3 className="text-4xl md:text-6xl font-bold text-primary font-cormorant leading-tight group-hover:text-secondary transition-colors duration-500">
+                                Invest in <br /> <span className="italic">Sovereignty.</span>
                             </h3>
+                            <p className="text-slate-500 text-lg font-inter leading-relaxed max-w-sm">
+                                Your contributions are strategic capital investments in community resilience, health, and economic power.
+                            </p>
+                            <Link href="/donate">
+                                <Button className="bg-primary hover:bg-secondary text-white font-black px-12 py-8 rounded-none text-xs tracking-[0.3em] uppercase transition-all duration-700">
+                                    INITIATE CAPITAL
+                                </Button>
+                            </Link>
                         </div>
-                        <p className="text-white/80 mb-8 text-lg">
-                            Your contributions are not just charity; they are capital investments in community resilience and health.
-                        </p>
-                        <ul className="space-y-3 mb-8">
-                            <li className="flex items-center gap-3 text-white">
-                                <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><Check className="w-3 h-3 text-white" /></span>
-                                Tax-deductible contributions.
-                            </li>
-                            <li className="flex items-center gap-3 text-white">
-                                <span className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center"><Check className="w-3 h-3 text-white" /></span>
-                                Transparent impact reporting.
-                            </li>
-                        </ul>
-                        <Link href="/donate">
-                            <Button className="bg-white text-secondary hover:bg-primary hover:text-white rounded-full px-8 py-6 font-bold border-none">
-                                DONATE NOW
-                            </Button>
-                        </Link>
                     </div>
 
                 </div>

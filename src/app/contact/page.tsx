@@ -22,6 +22,8 @@ function PageTitle({ title, breadcrumb }: { title: string, breadcrumb: string })
     );
 }
 
+// ... imports ...
+
 export default function ContactPage() {
     const [formData, setFormData] = useState({
         name: "",
@@ -68,113 +70,129 @@ export default function ContactPage() {
 
     return (
         <main className="flex flex-col min-h-screen">
-            <PageTitle title="Contact Us" breadcrumb="Contact" />
+            {/* Institutional Header */}
+            <section className="relative py-32 md:py-52 bg-[#0d0a1a] overflow-hidden flex items-center justify-center text-center">
+                {/* 8D Background Overlay */}
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0d0a1a] via-[#1a0f2e] to-[#0d0a1a]" />
+                    <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+                </div>
+
+                <div className="relative z-10 px-4">
+                    <span className="text-secondary font-black tracking-[0.5em] text-[10px] uppercase block mb-6">Global Embassy</span>
+                    <h1 className="text-5xl md:text-8xl font-black text-white font-manrope mb-4 tracking-tighter">Strategic <span className="text-secondary italic font-cormorant">Nexus.</span></h1>
+                    <div className="h-px w-24 bg-white/20 mx-auto my-8" />
+                    <div className="text-[10px] text-white/40 font-bold tracking-[0.3em] uppercase font-manrope">
+                        Protocol 004 / <span className="text-white opacity-100">Contact</span>
+                    </div>
+                </div>
+                <div className="absolute bottom-0 w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            </section>
 
             <section className="py-24 bg-white relative">
-                <div className="container mx-auto px-4 md:px-0">
+                <div className="container mx-auto px-6 relative z-10">
 
-                    {/* Info Cards */}
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24">
+                    {/* Info Cards - Protocol Style */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-px bg-slate-100 border border-slate-100 mb-24 max-w-6xl mx-auto shadow-2xl">
                         {[
-                            { icon: Mail, title: "Partnership Inquiries", line1: "partnerships@kawac.ca", line2: "grants@kawac.ca" },
-                            { icon: Phone, title: "Headquarters", line1: "+1 (555) 123-4567", line2: "Mon - Fri: 09:00 - 17:00 EST" },
+                            { icon: Mail, title: "Alliance Inquiries", line1: "partnerships@kawac.ca", line2: "grants@kawac.ca" },
+                            { icon: Phone, title: "Command Center", line1: "+1 (555) 123-4567", line2: "Mon - Fri: 09:00 - 17:00 EST" },
                             { icon: MapPin, title: "Operations Base", line1: "123 Main Street, Suite 100", line2: "Toronto, ON, Canada" }
                         ].map((item, i) => (
-                            <div key={i} className="bg-white border border-slate-100 p-12 text-center group hover:shadow-xl transition-all duration-500 hover:border-[#FBAF3C]/30">
-                                <div className="w-12 h-12 bg-[#0C3B4E]/5 text-[#0C3B4E] rounded-none flex items-center justify-center mx-auto mb-8 group-hover:bg-[#0C3B4E] group-hover:text-white transition-colors duration-500">
-                                    <item.icon strokeWidth={1.5} />
+                            <div key={i} className="bg-white p-16 text-center group hover:bg-[#fafafa] transition-colors duration-500">
+                                <div className="w-12 h-12 bg-secondary/5 text-secondary flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-500">
+                                    <item.icon strokeWidth={1.5} size={20} />
                                 </div>
-                                <h4 className="font-bold text-[#0C3B4E] text-lg mb-4 font-playfair">{item.title}</h4>
-                                <p className="text-slate-500 text-sm">{item.line1}</p>
-                                <p className="text-slate-500 text-sm">{item.line2}</p>
+                                <h4 className="font-black text-[#0d0a1a] text-lg mb-4 font-cormorant tracking-wider uppercase">{item.title}</h4>
+                                <p className="text-slate-400 text-xs font-manrope font-medium tracking-wide">{item.line1}</p>
+                                <p className="text-slate-400 text-xs font-manrope font-medium tracking-wide">{item.line2}</p>
                             </div>
                         ))}
                     </div>
 
-                    {/* Form Section */}
-                    <div className="max-w-4xl mx-auto bg-[#F4F5F8] p-12 md:p-20">
+                    {/* Form Section - Clean & Sharp */}
+                    <div className="max-w-5xl mx-auto bg-[#F4F5F8] p-12 md:p-24 border border-slate-200">
                         <div className="text-center mb-16">
-                            <span className="text-secondary font-bold tracking-widest text-xs uppercase block mb-4">/// INITIATE DIALOGUE</span>
-                            <h2 className="text-4xl font-bold text-[#0C3B4E] font-playfair mb-4">
-                                Strategic Alignment
+                            <span className="text-secondary font-black tracking-[0.4em] text-[9px] uppercase block mb-6">Secure Channel</span>
+                            <h2 className="text-4xl md:text-5xl font-black text-[#0d0a1a] font-cormorant mb-6">
+                                Initiate Strategic Dialogue
                             </h2>
-                            <p className="text-slate-500 max-w-xl mx-auto">
-                                Whether for funding validation, program partnership, or governance audits, our team is ready to provide documentation and insight.
+                            <p className="text-slate-500 max-w-xl mx-auto font-manrope font-light text-lg leading-relaxed italic">
+                                For funding validation, program partnership, or governance audits. Access the alliance.
                             </p>
                         </div>
 
                         {isSuccess ? (
-                            <div className="text-center py-10 animate-in fade-in zoom-in duration-500">
-                                <div className="w-16 h-16 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                                    <CheckCircle2 className="w-8 h-8" />
+                            <div className="text-center py-20 animate-in fade-in zoom-in duration-500 bg-white border border-slate-100 p-12">
+                                <div className="w-20 h-20 bg-green-50 text-green-600 rounded-full flex items-center justify-center mx-auto mb-8">
+                                    <CheckCircle2 className="w-10 h-10" />
                                 </div>
-                                <h3 className="text-2xl font-bold text-[#0C3B4E] mb-2 font-playfair">Message Sent Successfully</h3>
-                                <p className="text-slate-500 mb-8">Thank you for reaching out. Our team will get back to you shortly.</p>
+                                <h3 className="text-3xl font-black text-[#0d0a1a] mb-4 font-cormorant">Protocol Acknowledged.</h3>
+                                <p className="text-slate-500 mb-10 font-manrope">Your transmission has been logged. Our secretariat will respond within 24 hours.</p>
                                 <Button
                                     onClick={() => setIsSuccess(false)}
-                                    className="bg-[#0C3B4E] text-white px-8 py-4 rounded-none"
+                                    className="bg-[#0d0a1a] text-white px-10 py-6 rounded-none font-black uppercase tracking-widest text-[10px] hover:bg-secondary transition-all"
                                 >
-                                    SEND ANOTHER MESSAGE
+                                    Reset Transmission
                                 </Button>
                             </div>
                         ) : (
-                            <form onSubmit={handleSubmit} className="space-y-8">
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                                    <div className="space-y-3">
-                                        <label className="text-xs font-bold uppercase tracking-wider text-[#0C3B4E]">Organization / Name</label>
+                            <form onSubmit={handleSubmit} className="space-y-10">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                                    <div className="space-y-4">
+                                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d0a1a]/60">Organization / Name</label>
                                         <Input
                                             name="name"
                                             value={formData.name}
                                             onChange={handleInputChange}
                                             required
-                                            className="bg-white border-none py-6 rounded-none focus:ring-1 focus:ring-[#0C3B4E]"
+                                            className="bg-white border-none py-8 rounded-none focus:ring-1 focus:ring-secondary font-manrope text-lg shadow-sm"
                                         />
                                     </div>
-                                    <div className="space-y-3">
-                                        <label className="text-xs font-bold uppercase tracking-wider text-[#0C3B4E]">Official Email</label>
+                                    <div className="space-y-4">
+                                        <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d0a1a]/60">Official Email</label>
                                         <Input
                                             name="email"
                                             type="email"
                                             value={formData.email}
                                             onChange={handleInputChange}
                                             required
-                                            className="bg-white border-none py-6 rounded-none focus:ring-1 focus:ring-[#0C3B4E]"
+                                            className="bg-white border-none py-8 rounded-none focus:ring-1 focus:ring-secondary font-manrope text-lg shadow-sm"
                                         />
                                     </div>
                                 </div>
-                                <div className="space-y-3">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-[#0C3B4E]">Inquiry Context</label>
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d0a1a]/60">Inquiry Context</label>
                                     <Input
                                         name="subject"
                                         value={formData.subject}
                                         onChange={handleInputChange}
                                         required
-                                        className="bg-white border-none py-6 rounded-none focus:ring-1 focus:ring-[#0C3B4E]"
+                                        className="bg-white border-none py-8 rounded-none focus:ring-1 focus:ring-secondary font-manrope text-lg shadow-sm"
                                     />
                                 </div>
-                                <div className="space-y-3">
-                                    <label className="text-xs font-bold uppercase tracking-wider text-[#0C3B4E]">Detailed Brief</label>
+                                <div className="space-y-4">
+                                    <label className="text-[10px] font-black uppercase tracking-[0.2em] text-[#0d0a1a]/60">Detailed Brief</label>
                                     <Textarea
                                         name="message"
                                         value={formData.message}
                                         onChange={handleInputChange}
                                         required
-                                        className="bg-white border-none h-40 resize-none rounded-none focus:ring-1 focus:ring-[#0C3B4E]"
+                                        className="bg-white border-none h-48 resize-none rounded-none focus:ring-1 focus:ring-secondary font-manrope text-lg shadow-sm p-6"
                                     />
                                 </div>
 
                                 {error && (
-                                    <p className="text-red-500 text-xs font-bold">{error}</p>
+                                    <p className="text-red-600 text-[10px] font-black uppercase tracking-widest border-l-2 border-red-600 pl-4 py-2 bg-red-50">{error}</p>
                                 )}
 
-                                <div className="text-center pt-4">
+                                <div className="pt-8">
                                     <Button
                                         type="submit"
                                         disabled={isSubmitting}
-                                        size="lg"
-                                        className="bg-[#0C3B4E] hover:bg-[#FBAF3C] hover:text-[#0C3B4E] text-white font-bold py-8 px-12 rounded-none shadow-xl tracking-widest text-xs uppercase transition-all"
+                                        className="w-full bg-[#0d0a1a] hover:bg-secondary text-white font-black py-8 rounded-none shadow-2xl tracking-[0.3em] text-[11px] uppercase transition-all duration-500"
                                     >
-                                        {isSubmitting ? "SENDING..." : "SUBMIT INQUIRY"}
+                                        {isSubmitting ? "TRANSMITTING..." : "SUBMIT PROTOCOL"}
                                     </Button>
                                 </div>
                             </form>
@@ -184,9 +202,10 @@ export default function ContactPage() {
                 </div>
             </section>
 
-            {/* Map Placeholder */}
-            <div className="h-96 w-full bg-slate-200">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184552.5728952084!2d-79.51814131238497!3d43.71815525791238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb90d7c63ba5%3A0x323555502ab4c477!2sToronto%2C%20ON!5e0!3m2!1sen!2sca!4v1716382946772!5m2!1sen!2sca" width="100%" height="100%" loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
+            {/* Map Placeholder - Artistic */}
+            <div className="h-[400px] w-full bg-slate-900 relative grayscale invert-[0.9] contrast-125">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d184552.5728952084!2d-79.51814131238497!3d43.71815525791238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89d4cb90d7c63ba5%3A0x323555502ab4c477!2sToronto%2C%20ON!5e0!3m2!1sen!2sca!4v1716382946772!5m2!1sen!2sca" width="100%" height="100%" loading="lazy" referrerPolicy="no-referrer-when-downgrade" className="opacity-60"></iframe>
+                <div className="absolute inset-0 bg-[#0d0a1a] mix-blend-color pointer-events-none" />
             </div>
         </main>
     );

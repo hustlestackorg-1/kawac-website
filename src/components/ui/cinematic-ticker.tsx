@@ -12,25 +12,21 @@ const headlines = [
 
 export function CinematicTicker() {
     return (
-        <div className="w-full bg-[#0C3B4E]/90 backdrop-blur-sm overflow-hidden py-2 relative z-30">
-            {/* Gradient Masks for fade effect */}
-            <div className="absolute top-0 left-0 w-24 h-full bg-gradient-to-r from-[#0C3B4E] to-transparent z-10"></div>
-            <div className="absolute top-0 right-0 w-24 h-full bg-gradient-to-l from-[#0C3B4E] to-transparent z-10"></div>
-
-            <div className="flex">
+        <div className="w-full bg-[#0d0a1a] border-b border-white/5 py-2 relative z-30 overflow-hidden">
+            <div className="flex justify-center">
                 <motion.div
                     className="flex whitespace-nowrap"
                     animate={{ x: "-50%" }}
                     transition={{
                         repeat: Infinity,
                         ease: "linear",
-                        duration: 60 // Slower, more majestic
+                        duration: 60
                     }}
                 >
-                    {[...headlines, ...headlines, ...headlines, ...headlines].map((text, i) => (
+                    {[...headlines, ...headlines].map((text, i) => (
                         <div key={i} className="inline-flex items-center mx-8">
-                            <span className="w-1.5 h-1.5 bg-[#FBAF3C] rounded-full mr-3"></span>
-                            <span className="text-white text-sm font-medium tracking-wide">
+                            <span className="w-1 h-1 bg-secondary rounded-full mr-3 opacity-50"></span>
+                            <span className="text-slate-300 text-[10px] font-medium tracking-widest uppercase font-manrope">
                                 {text}
                             </span>
                         </div>

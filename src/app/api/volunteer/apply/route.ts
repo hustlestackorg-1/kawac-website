@@ -38,6 +38,9 @@ export async function POST(request: NextRequest) {
         }
 
         const supabase = createAdminClient();
+        if (!supabase) {
+            return NextResponse.json({ error: 'System offline' }, { status: 503 });
+        }
 
         // Insert application
         const { data, error } = await supabase

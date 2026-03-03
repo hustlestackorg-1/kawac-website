@@ -5,9 +5,11 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme {
+  --font-inter: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-manrope: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
   --font-caveat: var(--font-caveat), ui-serif, Georgia, serif;
   --font-playfair: var(--font-playfair), ui-serif, Georgia, serif;
+  --font-cormorant: var(--font-cormorant), ui-serif, Georgia, serif;
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -67,93 +69,85 @@
 }
 
 /*
-  KAWAC (OXPINS STYLE) BRAND PALETTE
-  Deep Teal: #0C3B4E (Primary Backgrounds)
-  Vivid Yellow/Orange: #FBAF3C (Accents, Buttons) - "Oxpins Yellow"
-  Earth Green: #5F8D4E (Secondary Accents)
+  "LIGHT AMETHYST" BRAND PALETTE
+  Royal Violet: #5c1f8a (Authority, Trust)
+  Light Amethyst: #b48de8 (Vision, Warmth, Creativity)
+  Rich Gold: #fbbf24 (Value, Excellence)
 */
 
 :root {
-  --radius: 0.5rem;
+  --radius: 0.75rem;
 
-  /* Light Theme */
+  /* Light Amethyst Edition — Airy & Elegant */
   --background: #FFFFFF;
-  --foreground: #6A7695;
-  /* Oxpins body text color is usually a soft slate/grey */
+  --foreground: #1e0b38;
 
-  --card: #FFFFFF;
-  --card-foreground: #6A7695;
-
-  --popover: #FFFFFF;
-  --popover-foreground: #0F172A;
-
-  /* Brand: Deep Teal (Oxpins Main) */
-  --primary: #0C3B4E;
+  /* Main Theme: Light Amethyst */
+  --primary: #5c1f8a;
+  /* Royal Violet — lighter than before */
   --primary-foreground: #FFFFFF;
-
-  /* Brand: Vivid Yellow (Oxpins Accent) */
-  --secondary: #FBAF3C;
+  --secondary: #b48de8;
+  /* Light Amethyst — noticeably lighter */
   --secondary-foreground: #FFFFFF;
 
-  /* Brand: Earth Green (Accent) */
-  --accent: #F4F5F8;
-  /* Light gray background for sections */
-  --accent-foreground: #0C3B4E;
+  /* Logo As Accents */
+  --logo-yellow: #fcd34d;
+  --logo-orange: #f97316;
+  --logo-green-light: #4ade80;
+  --logo-green-dark: #15803d;
+  --logo-blue-light: #38bdf8;
 
-  --muted: #F4F5F8;
-  --muted-foreground: #6A7695;
+  /* Action & Highlights */
+  --action-red: #dc2626;
+  --action-red-soft: #fef2f2;
+  --gold-hd: #fbbf24;
+  --gold-offtone: #b45309;
 
-  --destructive: #EF4444;
+  --card: #FFFFFF;
+  --card-foreground: #1e0b38;
+  --popover: #FFFFFF;
+  --popover-foreground: #1e0b38;
+  --muted: #f5eeff;
+  --muted-foreground: #8b5cf6;
+  --destructive: #dc2626;
   --destructive-foreground: #FFFFFF;
+  --border: #ede0ff;
+  --input: #ede0ff;
+  --ring: #b48de8;
 
-  --border: #E2E8F0;
-  --input: #E2E8F0;
-  --ring: #FBAF3C;
-  /* Focus ring is yellow */
-
-  --chart-1: #0C3B4E;
-  --chart-2: #FBAF3C;
-  --chart-3: #5F8D4E;
-  --chart-4: #F59E0B;
-  --chart-5: #10B981;
+  --chart-1: #5c1f8a;
+  --chart-2: #b48de8;
+  --chart-3: #fbbf24;
+  --chart-4: #22c55e;
 }
 
 .dark {
-  /* Dark Theme */
-  --background: #0C3B4E;
-  --foreground: #F4F5F8;
+  --background: #0f0320;
+  --foreground: #f8fafc;
 
-  --card: #082836;
-  --card-foreground: #F4F5F8;
-
-  --popover: #082836;
-  --popover-foreground: #F4F5F8;
-
-  --primary: #FBAF3C;
-  /* Action color becomes primary in dark mode for visibility */
-  --primary-foreground: #FFFFFF;
-
-  --secondary: #5F8D4E;
+  --primary: #c9a0ff;
+  --primary-foreground: #1e0b38;
+  --secondary: #7c3aed;
   --secondary-foreground: #FFFFFF;
 
-  --accent: #082836;
-  --accent-foreground: #FBAF3C;
+  --logo-yellow: #fbbf24;
+  --logo-orange: #ea580c;
+  --logo-green-light: #22c55e;
+  --logo-green-dark: #14532d;
+  --logo-blue-light: #0ea5e9;
 
-  --muted: #082836;
-  --muted-foreground: #94A3B8;
+  --action-red: #ef4444;
+  --gold-hd: #fbca3e;
 
-  --destructive: #EF4444;
-  --destructive-foreground: #FFFFFF;
-
-  --border: #1E293B;
-  --input: #1E293B;
-  --ring: #FBAF3C;
-
-  --chart-1: #FBAF3C;
-  --chart-2: #5F8D4E;
-  --chart-3: #22D3EE;
-  --chart-4: #F59E0B;
-  --chart-5: #10B981;
+  --card: #1a0b2e;
+  --card-foreground: #f8fafc;
+  --popover: #1a0b2e;
+  --popover-foreground: #f8fafc;
+  --muted: #2e1065;
+  --muted-foreground: #c4a5fa;
+  --border: #6d28d9;
+  --input: #6d28d9;
+  --ring: #b48de8;
 }
 
 @layer base {
@@ -162,6 +156,90 @@
   }
 
   body {
-    @apply bg-background text-foreground antialiased font-manrope;
+    @apply bg-background text-foreground antialiased font-inter;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-cormorant font-bold tracking-tight text-balance;
+  }
+
+  p {
+    @apply leading-[1.8] text-slate-600 dark:text-slate-400 max-w-[70ch] mx-auto;
+  }
+
+  section {
+    @apply py-20 md:py-32 flex flex-col items-center text-center;
+  }
+}
+
+@layer utilities {
+  .glass-amethyst {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20;
+    box-shadow: 0 8px 32px 0 rgba(76, 29, 149, 0.1);
+  }
+
+  .cinematic-vignette {
+    @apply after:content-[''] after:absolute after:inset-0 after:pointer-events-none;
+
+    &::after {
+      background: radial-gradient(circle, transparent 20%, rgba(15, 23, 42, 0.6) 100%);
+    }
+  }
+
+  .ken-burns {
+    @apply animate-[kenburns_20s_ease_infinite_alternate];
+  }
+
+  @keyframes kenburns {
+    0% {
+      transform: scale(1);
+    }
+
+    100% {
+      transform: scale(1.1);
+    }
+  }
+
+  .text-glow-purple {
+    text-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+  }
+
+  .institutional-shadow {
+    box-shadow: 0 50px 100px -20px rgba(76, 29, 149, 0.3);
+  }
+
+  .center-content {
+    @apply max-w-7xl mx-auto px-6 w-full flex flex-col items-center;
+  }
+
+  /* ULTRA-PREMIUM UTILITIES */
+  .magnetic-btn {
+    @apply relative overflow-hidden transition-all duration-500 ease-out;
+  }
+
+  .grain-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.05;
+    mix-blend-mode: overlay;
+  }
+
+  .border-logo-gradient {
+    border-image: linear-gradient(to right, var(--logo-yellow), var(--logo-orange), var(--logo-green-light), var(--logo-blue-light)) 1;
+  }
+
+  .text-logo-gradient {
+    background: linear-gradient(to right, var(--logo-yellow), var(--logo-orange), var(--logo-green-light), var(--logo-blue-light));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
 }

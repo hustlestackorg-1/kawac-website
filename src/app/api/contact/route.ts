@@ -17,6 +17,12 @@ export async function POST(request: NextRequest) {
         }
 
         const supabase = createAdminClient();
+        if (!supabase) {
+            return NextResponse.json(
+                { error: 'Institutional system offline' },
+                { status: 503 }
+            );
+        }
 
         // Insert contact submission
         const { data, error } = await supabase

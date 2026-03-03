@@ -19,7 +19,7 @@ export default function DonatePage() {
         message: ""
     });
 
-    const donationAmounts = ["25", "50", "100", "250", "500"];
+    const donationAmounts = ["25", "50", "100", "500", "1000"];
 
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
@@ -53,73 +53,93 @@ export default function DonatePage() {
     };
 
     return (
-        <main className="min-h-screen bg-slate-50">
-            {/* Hero Section */}
-            <section className="relative py-24 md:py-32 bg-[#0C3B4E] text-white overflow-hidden">
-                <div className="absolute inset-0 bg-[url('/assets/hero-health.jpg')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+        <main className="min-h-screen bg-[#F4F5F8]">
+            {/* Sovereign Hero Section */}
+            <section className="relative py-32 md:py-48 bg-[#0d0a1a] overflow-hidden flex items-center justify-center text-center">
+                {/* 8D Background Overlay */}
+                <div className="absolute inset-0 z-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-[#0d0a1a] via-[#1a0f2e] to-[#0d0a1a]" />
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(124,58,237,0.1),transparent)]" />
+                    <div className="absolute inset-0 opacity-20 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:40px_40px]" />
+                </div>
+
                 <div className="container mx-auto px-4 relative z-10 text-center">
                     <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.6 }}
+                        initial={{ opacity: 0, scale: 0.95 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1 }}
                     >
-                        <Heart className="w-16 h-16 text-[#FBAF3C] mx-auto mb-6 animate-pulse" />
-                        <h1 className="text-4xl md:text-6xl font-playfair font-bold mb-6">Invest in Systemic Change</h1>
-                        <p className="text-xl text-slate-300 max-w-2xl mx-auto leading-relaxed">
-                            Your gift powers KAWAC's mission to uplift vulnerable voices across Canada and Kenya through healthcare, advocacy, and climate justice.
+                        <div className="flex justify-center mb-8">
+                            <div className="bg-secondary/10 p-4 rounded-full border border-secondary/20 backdrop-blur-md">
+                                <Heart className="w-8 h-8 text-secondary fill-secondary/20" />
+                            </div>
+                        </div>
+                        <h1 className="text-5xl md:text-8xl font-black font-cormorant text-white mb-6 tracking-tight leading-[0.9]">
+                            Investing in Sustainable Systems That <br /> <span className="text-secondary italic">Uplift Communities</span>.
+                        </h1>
+                        <p className="text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-manrope font-light italic">
+                            We go beyond charity by funding structural solutions that strengthen local economies, empower communities, and drive self-sustaining growth across the Global South.
                         </p>
                     </motion.div>
                 </div>
             </section>
 
-            <section className="py-20">
-                <div className="container mx-auto px-4">
-                    <div className="flex flex-col lg:flex-row gap-16 max-w-6xl mx-auto">
+            <section className="py-24 relative">
+                {/* Decorative background element */}
+                <div className="absolute top-0 left-0 w-full h-1/2 bg-[#0d0a1a] skew-y-1 transform origin-top-left -z-10" />
 
-                        {/* Left: Why Give */}
-                        <div className="w-full lg:w-1/2 space-y-10">
-                            <div>
-                                <h2 className="text-3xl font-playfair font-bold text-[#0C3B4E] mb-6">Where Your Money Goes</h2>
-                                <p className="text-slate-600 mb-8">
-                                    At KAWAC, transparency is our core pillar. We ensure that 90% of every dollar donated goes directly toward program implementation and field-level impact.
+                <div className="container mx-auto px-6 relative z-10">
+                    <div className="flex flex-col lg:flex-row gap-16 max-w-7xl mx-auto">
+
+                        {/* Left: The Investment Thesis */}
+                        <div className="w-full lg:w-1/2 space-y-12 pt-10">
+                            <div className="space-y-6">
+                                <h2 className="text-4xl font-black font-cormorant text-white lg:text-[#0d0a1a] mb-6">The Equity Return</h2>
+                                <p className="text-slate-400 lg:text-slate-600 text-lg leading-relaxed font-manrope">
+                                    KAWAC operates on a protocol of absolute transparency. 90% of your capital deployment goes directly to field operations, bypassing administrative bloat to secure freedom.
                                 </p>
                             </div>
 
                             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <ImpactCard
                                     icon={Zap}
-                                    title="Rapid Response"
-                                    desc="Emergency medical supplies and mobile clinic operational costs."
+                                    title="Rapid Deployment"
+                                    desc="Immediate mobilization of medical assets and emergency response units."
                                 />
                                 <ImpactCard
                                     icon={Globe}
-                                    title="Policy Growth"
-                                    desc="Funding research and advocacy for constitutional health reforms."
+                                    title="Policy Architecture"
+                                    desc="Research and legal frameworks to challenge systemic health inequality."
                                 />
                                 <ImpactCard
                                     icon={ShieldCheck}
-                                    title="Security"
-                                    desc="Protecting marginalized communities and human rights defenders."
+                                    title="Sovereign Safety"
+                                    desc="Protection protocols for marginalized defenders and community leaders."
                                 />
                                 <ImpactCard
                                     icon={DollarSign}
-                                    title="Sustainability"
-                                    desc="Seed funding for smallholder farmers and clean energy projects."
+                                    title="Economic Seeds"
+                                    desc="Direct capital injection for sustainable agricultural sovereignty."
                                 />
                             </div>
 
-                            <div className="bg-[#0C3B4E] p-8 rounded-2xl text-white">
-                                <h3 className="font-bold text-xl mb-4">Monthly Giving Circle</h3>
-                                <p className="text-slate-300 text-sm mb-6">
-                                    Join our "Pillar of KAWAC" program. Monthly donors provide the reliable baseline stability needed for multi-year program planning.
-                                </p>
-                                <Button className="bg-[#FBAF3C] text-[#0C3B4E] font-bold rounded-full px-8 py-3 w-full sm:w-auto">
-                                    JOIN THE CIRCLE
-                                </Button>
+                            <div className="bg-[#1a0f2e] p-10 relative overflow-hidden group border border-secondary/20">
+                                <div className="relative z-10">
+                                    <h3 className="font-black text-2xl text-white font-cormorant mb-4 uppercase tracking-widest">The Inner Circle</h3>
+                                    <p className="text-slate-400 text-sm mb-8 leading-relaxed font-manrope">
+                                        Become a pillar of the alliance. Monthly recurring investments provide the baseline stability for multi-year liberation strategies.
+                                    </p>
+                                    <Button className="bg-secondary text-[#0d0a1a] hover:bg-white font-black rounded-none px-8 py-6 uppercase tracking-[0.2em] transition-all">
+                                        Initialize Recurring
+                                    </Button>
+                                </div>
+                                <div className="absolute right-0 bottom-0 opacity-5 group-hover:scale-110 transition-transform duration-700">
+                                    <ShieldCheck size={180} />
+                                </div>
                             </div>
                         </div>
 
-                        {/* Right: Donation Form */}
+                        {/* Right: The Transaction Interface */}
                         <div className="w-full lg:w-1/2">
                             <AnimatePresence mode="wait">
                                 {isSuccess ? (
@@ -127,20 +147,20 @@ export default function DonatePage() {
                                         key="success"
                                         initial={{ opacity: 0, scale: 0.95 }}
                                         animate={{ opacity: 1, scale: 1 }}
-                                        className="bg-white p-10 md:p-16 rounded-3xl shadow-2xl border border-slate-100 text-center h-full flex flex-col items-center justify-center"
+                                        className="bg-white p-12 md:p-16 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.1)] border-t-4 border-secondary text-center h-full flex flex-col items-center justify-center"
                                     >
-                                        <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mb-6">
-                                            <CheckCircle2 className="w-10 h-10" />
+                                        <div className="w-24 h-24 bg-green-50 text-green-600 rounded-full flex items-center justify-center mb-8">
+                                            <CheckCircle2 className="w-12 h-12" />
                                         </div>
-                                        <h2 className="text-3xl font-playfair font-bold text-[#0C3B4E] mb-4">Thank You for Your Generosity!</h2>
-                                        <p className="text-slate-500 mb-8">
-                                            Your donation of ${amount === "custom" ? customAmount : amount} has been successfully recorded. You will receive a tax receipt via email shortly.
+                                        <h2 className="text-4xl font-black font-cormorant text-[#0d0a1a] mb-6">Transaction Verified.</h2>
+                                        <p className="text-slate-500 mb-10 font-manrope max-w-sm mx-auto">
+                                            Your contribution of <span className="font-bold text-[#0d0a1a]">${amount === "custom" ? customAmount : amount}</span> has been deployed to the sovereignty fund. A receipt has been dispatched.
                                         </p>
                                         <Button
                                             onClick={() => window.location.href = "/"}
-                                            className="bg-[#0C3B4E] text-white px-10 py-6 rounded-full font-bold shadow-xl"
+                                            className="bg-[#0d0a1a] text-white px-12 py-6 font-black uppercase tracking-widest hover:bg-secondary hover:text-black transition-all rounded-none"
                                         >
-                                            RETURN HOME
+                                            Return to Nexus
                                         </Button>
                                     </motion.div>
                                 ) : (
@@ -148,21 +168,25 @@ export default function DonatePage() {
                                         key="form"
                                         initial={{ opacity: 0, x: 20 }}
                                         animate={{ opacity: 1, x: 0 }}
-                                        className="bg-white p-10 md:p-16 rounded-3xl shadow-2xl border border-slate-100"
+                                        className="bg-white p-10 md:p-16 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.15)] border-t-4 border-secondary relative"
                                     >
-                                        <h3 className="text-2xl font-playfair font-bold text-[#0C3B4E] mb-8 text-center">One-Time Gift</h3>
+                                        <div className="absolute top-0 right-0 p-4 opacity-10">
+                                            <Heart size={100} />
+                                        </div>
 
-                                        <form onSubmit={handleSubmit} className="space-y-6">
+                                        <h3 className="text-3xl font-black font-cormorant text-[#0d0a1a] mb-10 text-center uppercase tracking-wider">One-Time Capital Injection</h3>
+
+                                        <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
                                             {/* Amount Selection */}
                                             <div>
-                                                <label className="text-xs font-bold text-slate-400 uppercase tracking-widest block mb-4">Select Amount (CAD)</label>
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] block mb-4">Select Deployment Amount (CAD)</label>
                                                 <div className="grid grid-cols-3 gap-3 mb-4">
                                                     {donationAmounts.map((amt) => (
                                                         <button
                                                             key={amt}
                                                             type="button"
                                                             onClick={() => { setAmount(amt); setCustomAmount(""); }}
-                                                            className={`py-4 rounded-xl font-bold border-2 transition-all ${amount === amt ? 'bg-[#0C3B4E] text-white border-[#0C3B4E]' : 'bg-white text-slate-600 border-slate-100 hover:border-slate-300'}`}
+                                                            className={`py-6 font-black font-manrope text-lg transition-all border border-transparent ${amount === amt ? 'bg-[#0d0a1a] text-white shadow-xl scale-105' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}
                                                         >
                                                             ${amt}
                                                         </button>
@@ -170,17 +194,17 @@ export default function DonatePage() {
                                                     <button
                                                         type="button"
                                                         onClick={() => setAmount("custom")}
-                                                        className={`py-4 rounded-xl font-bold border-2 transition-all ${amount === "custom" ? 'bg-[#0C3B4E] text-white border-[#0C3B4E]' : 'bg-white text-slate-600 border-slate-100 hover:border-slate-300'}`}
+                                                        className={`py-6 font-black font-manrope text-sm uppercase transition-all border border-transparent ${amount === "custom" ? 'bg-[#0d0a1a] text-white shadow-xl scale-105' : 'bg-slate-50 text-slate-500 hover:bg-slate-100'}`}
                                                     >
                                                         Custom
                                                     </button>
                                                 </div>
                                                 {amount === "custom" && (
-                                                    <div className="relative">
-                                                        <DollarSign className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
+                                                    <div className="relative animate-in fade-in zoom-in duration-300">
+                                                        <DollarSign className="absolute left-6 top-1/2 -translate-y-1/2 text-slate-400" size={20} />
                                                         <Input
                                                             placeholder="Enter custom amount"
-                                                            className="pl-12 py-7 bg-slate-50 border-none text-lg font-bold"
+                                                            className="pl-14 py-8 bg-slate-50 border-none text-xl font-black font-manrope"
                                                             type="number"
                                                             value={customAmount}
                                                             onChange={(e) => setCustomAmount(e.target.value)}
@@ -191,61 +215,61 @@ export default function DonatePage() {
                                             </div>
 
                                             {/* Personal Info */}
-                                            <div className="grid grid-cols-2 gap-4">
-                                                <div className="space-y-2">
-                                                    <label className="text-xs font-bold text-slate-700">First Name</label>
+                                            <div className="grid grid-cols-2 gap-6">
+                                                <div className="space-y-3">
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">First Name</label>
                                                     <Input
                                                         name="firstName"
                                                         value={formData.firstName}
                                                         onChange={handleInputChange}
                                                         required
-                                                        className="bg-slate-50 border-none py-6"
+                                                        className="bg-slate-50 border-none py-6 rounded-none focus:ring-1 focus:ring-secondary"
                                                     />
                                                 </div>
-                                                <div className="space-y-2">
-                                                    <label className="text-xs font-bold text-slate-700">Last Name</label>
+                                                <div className="space-y-3">
+                                                    <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Last Name</label>
                                                     <Input
                                                         name="lastName"
                                                         value={formData.lastName}
                                                         onChange={handleInputChange}
                                                         required
-                                                        className="bg-slate-50 border-none py-6"
+                                                        className="bg-slate-50 border-none py-6 rounded-none focus:ring-1 focus:ring-secondary"
                                                     />
                                                 </div>
                                             </div>
 
-                                            <div className="space-y-2">
-                                                <label className="text-xs font-bold text-slate-700">Email Address</label>
+                                            <div className="space-y-3">
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Email Address</label>
                                                 <Input
                                                     name="email"
                                                     type="email"
                                                     value={formData.email}
                                                     onChange={handleInputChange}
                                                     required
-                                                    className="bg-slate-50 border-none py-6"
+                                                    className="bg-slate-50 border-none py-6 rounded-none focus:ring-1 focus:ring-secondary"
                                                 />
                                             </div>
 
-                                            <div className="space-y-2">
-                                                <label className="text-xs font-bold text-slate-700">Message (Optional)</label>
+                                            <div className="space-y-3">
+                                                <label className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em]">Message (Optional)</label>
                                                 <Textarea
                                                     name="message"
                                                     value={formData.message}
                                                     onChange={handleInputChange}
-                                                    className="bg-slate-50 border-none resize-none h-24"
+                                                    className="bg-slate-50 border-none resize-none h-24 rounded-none focus:ring-1 focus:ring-secondary"
                                                 />
                                             </div>
 
-                                            <div className="pt-4">
+                                            <div className="pt-6">
                                                 <Button
                                                     disabled={isSubmitting}
                                                     type="submit"
-                                                    className="w-full bg-[#FBAF3C] hover:bg-[#0C3B4E] text-[#0C3B4E] hover:text-white font-extrabold py-8 rounded-full shadow-xl transition-all text-lg tracking-wide"
+                                                    className="w-full bg-action-red hover:bg-[#b91c1c] text-white font-black py-8 shadow-2xl transition-all text-sm tracking-[0.25em] uppercase rounded-none group"
                                                 >
-                                                    {isSubmitting ? "PROCESSING..." : "COMPLETE DONATION"}
+                                                    {isSubmitting ? "PROCESSING..." : "AUTHORIZE TRANSACTION"}
                                                 </Button>
-                                                <p className="text-[10px] text-center text-slate-400 mt-6 uppercase tracking-[0.2em]">
-                                                    Secure Payment Processing via Integrated Systems
+                                                <p className="text-[9px] text-center text-slate-400 mt-6 uppercase tracking-[0.2em] flex items-center justify-center gap-2">
+                                                    <ShieldCheck size={12} /> Secure Protocol
                                                 </p>
                                             </div>
                                         </form>
@@ -262,12 +286,12 @@ export default function DonatePage() {
 
 function ImpactCard({ icon: Icon, title, desc }: { icon: any, title: string, desc: string }) {
     return (
-        <div className="bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-            <div className="w-12 h-12 bg-[#FBAF3C]/10 text-[#FBAF3C] rounded-lg flex items-center justify-center mb-4">
-                <Icon size={24} />
+        <div className="bg-white p-8 border border-slate-100 hover:border-secondary/30 transition-all duration-500 group">
+            <div className="w-12 h-12 bg-secondary/5 text-secondary flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <Icon size={20} strokeWidth={1.5} />
             </div>
-            <h4 className="font-bold text-[#0C3B4E] mb-2">{title}</h4>
-            <p className="text-xs text-slate-500 leading-relaxed">{desc}</p>
+            <h4 className="font-black text-[#0d0a1a] mb-2 font-cormorant text-xl tracking-wide">{title}</h4>
+            <p className="text-xs text-slate-500 leading-relaxed font-medium">{desc}</p>
         </div>
     );
 }

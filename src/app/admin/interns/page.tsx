@@ -21,6 +21,7 @@ export default function InternsAdminPage() {
     }, []);
 
     const fetchApplications = async () => {
+        if (!supabase) return;
         setIsLoading(true);
         const { data, error } = await supabase
             .from("internship_applications")
@@ -34,6 +35,7 @@ export default function InternsAdminPage() {
     };
 
     const updateStatus = async (id: string, status: string) => {
+        if (!supabase) return;
         const { error } = await supabase
             .from("internship_applications")
             .update({ status })
@@ -48,7 +50,7 @@ export default function InternsAdminPage() {
         <div className="space-y-8">
             <div className="flex justify-between items-center">
                 <div>
-                    <h1 className="text-3xl font-playfair font-bold text-[#0C3B4E]">Internship Applications</h1>
+                    <h1 className="text-3xl font-playfair font-bold text-[#4A1D6B]">Internship Applications</h1>
                     <p className="text-slate-500">Review strategic placements and academic partnerships.</p>
                 </div>
                 <div className="flex gap-4">
@@ -86,7 +88,7 @@ export default function InternsAdminPage() {
                             applications.map((app) => (
                                 <TableRow key={app.id}>
                                     <TableCell>
-                                        <div className="font-bold text-[#0C3B4E]">{app.full_name}</div>
+                                        <div className="font-bold text-[#4A1D6B]">{app.full_name}</div>
                                         <div className="text-xs text-slate-500">{app.email}</div>
                                     </TableCell>
                                     <TableCell>

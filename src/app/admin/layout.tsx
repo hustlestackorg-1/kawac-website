@@ -42,7 +42,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <ProtectedRoute requireAdmin>
             <div className="flex min-h-screen bg-slate-50 font-manrope">
                 {/* Sidebar Desktop */}
-                <aside className="hidden lg:flex flex-col w-72 bg-[#0C3B4E] text-white fixed h-full z-30">
+                <aside className="hidden lg:flex flex-col w-72 bg-[#4A1D6B] text-white fixed h-full z-30">
                     <div className="p-8">
                         <Link href="/" className="block">
                             <h1 className="text-2xl font-bold font-playfair tracking-wider">KAWAC</h1>
@@ -73,7 +73,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
                     <div className="p-4 border-t border-white/10">
                         <div className="flex items-center gap-3 px-4 py-3 mb-4">
-                            <div className="w-10 h-10 rounded-full bg-[#FBAF3C] flex items-center justify-center text-[#0C3B4E] font-bold">
+                            <div className="w-10 h-10 rounded-full bg-[#FBAF3C] flex items-center justify-center text-[#4A1D6B] font-bold">
                                 {profile?.full_name?.charAt(0) || profile?.email?.charAt(0).toUpperCase()}
                             </div>
                             <div className="flex-1 min-w-0">
@@ -92,7 +92,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
                 </aside>
 
                 {/* Mobile Header */}
-                <div className="lg:hidden fixed top-0 w-full bg-[#0C3B4E] text-white z-40 px-6 py-4 flex items-center justify-between shadow-lg">
+                <div className="lg:hidden fixed top-0 w-full bg-[#4A1D6B] text-white z-40 px-6 py-4 flex items-center justify-between shadow-lg">
                     <Link href="/">
                         <h1 className="text-xl font-bold font-playfair tracking-wider">KAWAC</h1>
                     </Link>
@@ -103,7 +103,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
                 {/* Mobile Sidebar */}
                 {isMobileMenuOpen && (
-                    <div className="lg:hidden fixed inset-0 z-50 bg-[#0C3B4E] p-6 pt-20">
+                    <div className="lg:hidden fixed inset-0 z-50 bg-[#4A1D6B] p-6 pt-20">
                         <nav className="space-y-4">
                             {sidebarLinks.map((link) => {
                                 const Icon = link.icon;

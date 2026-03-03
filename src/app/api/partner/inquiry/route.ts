@@ -24,6 +24,9 @@ export async function POST(request: NextRequest) {
         }
 
         const supabase = createAdminClient();
+        if (!supabase) {
+            return NextResponse.json({ error: 'System offline' }, { status: 503 });
+        }
 
         // Insert inquiry
         const { data, error } = await supabase
@@ -51,7 +54,7 @@ export async function POST(request: NextRequest) {
         await sendEmail({
             to: email,
             subject: 'KAWAC Partnership Inquiry Received',
-            html: partnerInquiryConfirmation(contact_name, organization_name),
+            html: partnerInquiryConfirmation(organization_name),
         });
 
         // Admin notification
