@@ -7,6 +7,7 @@ import { ProgramsTicker } from "@/components/ui/programs-ticker";
 import { AuthProvider } from "@/components/auth/AuthProvider";
 import { KawacAI } from "@/components/ui/KawacAI";
 import { SmoothScroll } from "@/components/ui/smooth-scroll";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "swap" }); // Body font
 const manrope = Manrope({
@@ -68,6 +69,7 @@ export default function RootLayout({
             </SmoothScroll>
           </div>
         </AuthProvider>
+        <Analytics />
       </body>
     </html>
   );
